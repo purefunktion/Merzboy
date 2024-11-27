@@ -1,4 +1,4 @@
-INCLUDE "hardware.inc"      ; Include the definitions from this community-maintained classic
+INCLUDE "hardware.inc"      ; Include the definitions from this community maintained classic
 
 SECTION "Header", ROM0[$100]; Mandatory GB stuff
     jp EntryPoint
@@ -6,14 +6,14 @@ SECTION "Header", ROM0[$100]; Mandatory GB stuff
 
 EntryPoint:                 ; Global label https://rgbds.gbdev.io/docs/master/rgbasm.5#Labels
     call WaitVBlank         ; Wait for Vertical Blank function call
-    xor a                   ; Turn A into 0
-    ld [rLCDC], a           ; Load A(0) into rLCDC, bit 7 = on/off (disable display)
+    xor a                   ; Turns register a into 0, same as doing "ld a, 0" but faster
+    ld [rLCDC], a           ; Load a(now 0) into rLCDC, bit 7 = on/off (disable display)
     
     ; Copy the tile data now that the LCD is turned off
-	ld de, Tiles            ; See "Tiles" further down, it's a label in code but only a memory location in the machine
-	ld hl, $9000            ; Place where the GB tiles usually live in memory 
-	ld bc, TilesEnd - Tiles ; TilesEnd is also just a number; hence BC now contains the number of tiles to copy
-	call Memcpy             ; See the Memcpy routine down below
+    ld de, Tiles            ; See "Tiles" further down, it's a label in code but only a memory location in the machine
+    ld hl, $9000            ; Place where the GB tiles usually live in memory 
+    ld bc, TilesEnd - Tiles ; TilesEnd is also just a number; hence BC now contains the number of tiles to copy
+    call Memcpy             ; See the Memcpy routine down below
 
     ld b, 160               ; Loop counter
     ld hl, _OAMRAM
@@ -60,7 +60,7 @@ ClearOam:
 
     ; Keypad state variables in Work RAM. Look at the end of the file for declarations
     ld [wCurKeys], a        ; Current key init
-	ld [wNewKeys], a        ; New key init
+    ld [wNewKeys], a        ; New key init
     ld [wPreviousKeys], a   ; Previous key init
 
 ; MAIN
@@ -90,19 +90,19 @@ WaitVBlank:
 ; @return A 0
 ; @return F Z set, C reset
 Memcpy:
-	; Increment B if C is non-zero
-	dec bc
-	inc b
-	inc c
+    ; Increment B if C is non-zero
+    dec bc
+    inc b
+    inc c
 .loop
-	ld a, [de]
-	ld [hli], a
-	inc de
-	dec c
-	jr nz, .loop
-	dec b
-	jr nz, .loop
-	ret
+    ld a, [de]
+    ld [hli], a
+    inc de
+    dec c
+    jr nz, .loop
+    dec b
+    jr nz, .loop
+    ret
 
 ; Clear the background
 ClearBg:
@@ -177,8 +177,8 @@ UpdateKeys:
 ; Check the key pad in play mode
 CheckKeysPLayMode:
     ld a, [wPreviousKeys]       ; Load previous state of the keys into register a
-	and a, PADF_A               ; AND the value in reg a with PADF_A(which is $01, see hardware.inc)
-	jp nz, .previousAPressed    ; If no bits in reg a match PADF_A the zero flag is raised.(A button not pressed earlier)
+    and a, PADF_A               ; AND the value in reg a with PADF_A(which is $01, see hardware.inc)
+    jp nz, .previousAPressed    ; If no bits in reg a match PADF_A the zero flag is raised.(A button not pressed earlier)
                                 ; so if A button was pressed earlier we jump to .previousAPressed...
 .previousANotPressed            ; ...or we fall through to here
     ld a, [wCurKeys]            ; Load current keys into reg a
@@ -263,50 +263,50 @@ Rand:: ; OBSERVE the exported symbol double colon (::) read about that here http
 
 Tiles:
     ; Tile 0
-	dw `00000000 ; The blank tile
-	dw `00000000 ; Backtick and the one of 0,1,2,3 for graphics. `01012323’ is equivalent to ‘$0F55’.
-	dw `00000000 ; https://rgbds.gbdev.io/docs/v0.8.0/rgbasm.5#Numeric_formats
-	dw `00000000
-	dw `00000000
-	dw `00000000
-	dw `00000000
-	dw `00000000
+    dw `00000000 ; The blank tile
+    dw `00000000 ; Backtick and the one of 0,1,2,3 for graphics. `01012323’ is equivalent to ‘$0F55’.
+    dw `00000000 ; https://rgbds.gbdev.io/docs/v0.8.0/rgbasm.5#Numeric_formats
+    dw `00000000
+    dw `00000000
+    dw `00000000
+    dw `00000000
+    dw `00000000
     ; Tile 1
     dw `33333333 ; Top tile empty look for the on/off switch
-	dw `30000003
-	dw `30000003
-	dw `30000003
-	dw `30000003
-	dw `30000003
-	dw `30000003
-	dw `30000003
+    dw `30000003
+    dw `30000003
+    dw `30000003
+    dw `30000003
+    dw `30000003
+    dw `30000003
+    dw `30000003
     ; Tile 2
     dw `30000003 ; Bottom tile empty look for the on/off switch
-	dw `30000003
-	dw `30000003
-	dw `30000003
-	dw `30000003
-	dw `30000003
-	dw `30000003
-	dw `33333333
+    dw `30000003
+    dw `30000003
+    dw `30000003
+    dw `30000003
+    dw `30000003
+    dw `30000003
+    dw `33333333
     ; Tile 3
     dw `33333333 ; Top tile button look for the on/off switch
-	dw `32222223
-	dw `32222223
-	dw `32222223
-	dw `32222223
-	dw `32222223
-	dw `32222223
-	dw `32222223
+    dw `32222223
+    dw `32222223
+    dw `32222223
+    dw `32222223
+    dw `32222223
+    dw `32222223
+    dw `32222223
     ; Tile 4
     dw `32222223 ; Bottom tile button look for the on/off switch
-	dw `32222223
-	dw `32222223
-	dw `32222223
-	dw `32222223
-	dw `32222223
-	dw `32222223
-	dw `33333333
+    dw `32222223
+    dw `32222223
+    dw `32222223
+    dw `32222223
+    dw `32222223
+    dw `32222223
+    dw `33333333
 TilesEnd:
 
 SECTION "merz_vars", wram0      ; This is work RAM

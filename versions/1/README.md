@@ -2,7 +2,7 @@
 This is the MVP if you want to be all tech-bro-y about it.
 
 ## Prerequisites
-If you are here to learn more RGBDS assembly, I salute you! It is a lot of fun. This project is not intended for the complete newbie. Rather, it fits somewhere between GB ASM Tutorial part 1 and 2. Go through that one before you look here. I would also recommend that if, like me, come from a traditional web programmer background and have spent your time in the higher abstraction layers, you should go and look at Ben Eater's YouTube video tutorial about how a CPU is made from scratch. It is the best and most accessible introduction to how computers work, in my opinion.
+If you are here to learn more RGBDS assembly, I salute you! It is a lot of fun. This project is not intended for the complete newbie. Rather, it fits somewhere between GB ASM Tutorial part 1 and 2. Go through that one before you look here. I would also recommend that if you, like me, come from a traditional web programmer background and have spent your time in the higher abstraction layers, you should go and look at Ben Eater's YouTube video tutorial about how a CPU is made from scratch. It is the best and most accessible introduction to how computers work, in my opinion.
 
 ## About this version
 This little program displays a button, which you control by pressing the A button on a Game Boy (or in an emulator). When doing so, the noise channel's volume is set to full and emits a manually set noise sound. That's it. I leave it to you to copy the hardware.inc and Makefile here if you want to build it.

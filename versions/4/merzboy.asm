@@ -349,7 +349,7 @@ HandlePressAKSMode:
     ld a, $80               ; Retrigger noise channel
     ld [rNR44], a
     call WaitVBlank         ; Wait for VBlank...
-    call SetSwitchDisplay   ; ...then update screen graphics to On/Off mode as we are in KS mode
+    call SetSwitchDisplay   ; ...then update screen graphics to on mode as we are in KS mode
     ret
 
 ; Handle release of A button in Kill Switch(KS) mode
@@ -401,7 +401,7 @@ HandlePressRight:
 HandlePressLeft:
     ld a, [wSwitchMode]      ; Are we in on/off or KS mode?
     cp 0
-    ret nz                   ; Already in on/off mode good bye
+    ret nz                   ; Already in on/off mode good buy
     ld a, 1                  ; Change to on/off mode
     ld [wSwitchMode], a
     call WaitVBlank

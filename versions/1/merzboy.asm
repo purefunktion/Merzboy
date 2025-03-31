@@ -1,4 +1,4 @@
-INCLUDE "hardware.inc"      ; Include the definitions from this community-maintained classic
+INCLUDE "../../includes/hardware.inc" ; Include the definitions from this community-maintained classic
 
 SECTION "Header", ROM0[$100]; Mandatory GB stuff
     jp EntryPoint

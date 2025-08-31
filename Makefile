@@ -4,7 +4,7 @@ FIX = rgbfix
 
 # Change the following lines
 ROM_NAME = merzboy
-SOURCES = merzboy.asm utils.asm
+SOURCES = merzboy.asm utils.asm tiles.asm
 FIX_FLAGS = -v -p 0
 
 INCDIR = inc

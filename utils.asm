@@ -1,5 +1,5 @@
 ; This is where we will put utility or helper functions used by the whole program
-INCLUDE "hardware.inc"      ; Include the definitions from this community maintained classic
+INCLUDE "includes/hardware.inc"      ; Include the definitions from this community maintained classic
 
 SECTION "Utils", ROM0;
 

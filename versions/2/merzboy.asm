@@ -316,7 +316,7 @@ wNewKeys: db            ; Keys changed this frame
 wPreviousKeys: db       ; Keys that is already pressed
 
 ; Noise channel variables (Placeholder not yet used)
-wAmplitude: ds 1        ; Amplitude 
+wAmplitude: ds 1        ; Amplitude
 wClockShift: ds 1       ; Clockshift
 wLsfrWidth: ds 1        ; LSFR width
 wClockDivider: ds 1     ; Clock Divider

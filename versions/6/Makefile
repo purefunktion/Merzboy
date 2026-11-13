@@ -2,7 +2,6 @@ ASM = rgbasm
 LINK = rgblink
 FIX = rgbfix
 
-# Change the following lines
 ROM_NAME = merzboy
 SOURCES = merzboy.asm utils.asm
 FIX_FLAGS = -v -p 0
